@@ -19,7 +19,7 @@
        return playerSelection;
      } else {
       console.log("Please pick rock, paper, or scissors");
-      playRound();
+
     };
 
  }
@@ -28,37 +28,65 @@
    computerSelection = computerPlay();
    playerSelection = prompt("rock, paper, or scissors?", "").toLowerCase();
    checkSelection(playerSelection);
-   if (playerSelection == computerSelection) {
+   if (playerSelection === computerSelection) {
      console.log("This round was a draw!");
+     return "This round was a draw!";
+        //  return "This round was a draw!";
+
    } else {
      if(playerSelection === "rock") {
        if(computerSelection === "paper") {
          console.log("Paper covers rock! You lose!");
+         return "Paper covers rock! You lose!";
+
        } else {
          console.log("Rock breaks scissors! You win!");
+         return "Rock breaks scissors! You win!";
        }
      } else if(playerSelection === "paper") {
        if(computerSelection === "rock") {
          console.log("Paper covers rock! You win!");
+         return "Paper covers rock! You win!";
        } else {
-         console.log("Scissors cut paper! You lose!")
+         console.log("Scissors cut paper! You lose!");
+         return "Scissors cut paper! You lose!";
+
        }
      } else if(playerSelection === "scissors") {
        if(computerSelection === "rock") {
          console.log("Rock breaks scissors! You lose!");
+         return "Rock breaks scissors! You lose!";
+
        } else {
-         console.log("Scissors cut paper! You win!");
+         console.log("Rock breaks scissors! You lose!");
+         return "Rock breaks scissors! You lose!";
+
        }
      }
 
    };
-   console.log(computerSelection + " - Computer choice");
-   console.log(playerSelection + " - Your choice");
+
  }
 
-playRound();
-
-
-    </script>
+function game() {
+  let compScore = 0;
+  let playerScore = 0;
+  for (counter = 1; playerScore < 5 && compScore < 5; counter++) {
+    let decider = playRound();
+    if (/draw/.test(decider)) {
+      console.log("Round # " + counter + " was a draw! No Change in score");
+     } else if (/win/.test(decider)) {
+       playerScore++;
+       console.log("Round # " + counter + " goes to the humans!");
+     } else if (/lose/.test(decider)) {
+       compScore++;
+       console.log("Round # " + counter + " stolen by the machine!");
+     }
+    console.log("The score is " + playerScore + " (player) to " + compScore + " (computer)" );
+   }
+   alert("Final Score: " + playerScore + " (player) to " + compScore + " (computer)");
+ }; //close for loop
+   game();
+  </script>
  </body>
 </html>
