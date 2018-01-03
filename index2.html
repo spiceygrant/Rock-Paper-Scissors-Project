@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+  </head>
+  <body>
+    <div class="left nav" id="header-left">
+      <a href=""></a>
+      <a href=""></a>
+    </div>  <!- close left nav ->
+    <div class="right nav" id="header-right">
+      <a href=""></a>
+      <a href=""></a>
+      <a href=""></a>
+      <a href=""></a>
+   </div>  <!- close right col -><BR>
+   <div class="content" id="">
+<button type="button" id="rock">Rock</button>
+<button type="button" id="paper">Paper</button>
+<button type="button" id="scissors">Scissors</button>
+
+    <div id="scoreboard">
+      <span id="playerScore" class="score">0</span> - <span id="cpScore" class="score">0</span>
+    </div>
+
+   </div> <!- close content ->
+   <div class="footer" id="">
+   <div class="left nav" id="footer-left">
+      <a href=""></a>
+      <a href=""></a>
+   </div>  <!- close left nav ->
+   <div class="right nav" id="footer-right">
+      <a href=""></a>
+      <a href=""></a>
+      <a href=""></a>
+   </div>  <!- close right col ->
+   </div>  <!- close footer row ->
+
+
+    <script>
+
+    let scoreboard = document.querySelector("#scoreboard");
+    let roundScore = document.createElement("p");
+    let playerScore = document.querySelector("#playerScore");
+    let cpScore = document.querySelector("#cpScore");
+    let cpWin = 0;
+    let playerWin = 0;
+    // add event listener to buttons
+    let rock = document.getElementById("rock");
+    rock.addEventListener("click", () => {
+      roundScore.textContent = playRound("rock", computerPlay());
+      scoreboard.append(roundScore);
+      console.log(playerScore);
+      checkScore();
+    });
+    let paper = document.getElementById("paper");
+    paper.addEventListener("click", () => {
+      roundScore.textContent = playRound("paper", computerPlay());
+      scoreboard.append(roundScore);
+      checkScore();
+    });
+    let scissors = document.getElementById("scissors");
+    scissors.addEventListener("click", () => {
+      roundScore.textContent = playRound("scissors", computerPlay());
+      scoreboard.append(roundScore);
+      checkScore();
+    });
+    //computer picks
+ function computerPlay() {
+   let choices = ["rock", "paper", "scissors"];
+   let computerChoice = choices[Math.floor(Math.random()*choices.length)];
+   return computerChoice;
+ };
+
+ // check score for 5 win Round
+
+ function checkScore() {
+   if(playerWin === 5) {
+      alert("Winner");
+      roundScore.textContent = "Game Over - You Win!";
+      restart();
+   } else if(cpWin === 5) {
+      alert("Loser");
+      roundScore.textContent = "Game Over - You Lose!";
+      restart();
+   } else {
+     return;
+   }
+
+function restart() {
+  playerWin = 0;
+  cpWin = 0;
+  cpScore.textContent = cpWin;
+  playerScore.textContent = playerWin;
+};
+
+ };
+  //check player choice
+ function checkSelection(playerSelection) {
+     if(playerSelection === "rock" || playerSelection === "scissors" || playerSelection === "paper") {
+       return playerSelection;
+     } else {
+      console.log("Please pick rock, paper, or scissors");
+
+    };
+
+ }
+
+ function playRound(playerSelection, computerSelection) {
+  /* computerSelection = computerPlay();
+   playerSelection = prompt("rock, paper, or scissors?", "").toLowerCase();
+   checkSelection(playerSelection);
+   */
+   if (playerSelection === computerSelection) {
+     // document.getElementById(scoreboard).innerHTML = "This round was a draw!";
+     console.log(scoreboard);
+     return "This round was a draw!";
+        //  return "This round was a draw!";
+
+   } else {
+     if(playerSelection === "rock") {
+       if(computerSelection === "paper") {
+         // document.getElementById(scoreboard).innerHTML = "Paper covers rock! You lose!";
+         console.log(scoreboard);
+         cpWin++;
+         console.log(cpScore);
+         cpScore.textContent = cpWin;
+
+        return "Paper covers rock! You lose!";
+       } else {
+        // document.getElementById(scoreboard).innerHTML = "Rock breaks scissors! You win!";
+         console.log(scoreboard);
+         playerWin++;
+         console.log(playerScore);
+         playerScore.textContent = playerWin;
+
+         return "Rock breaks scissors! You win!";
+
+       }
+     } else if(playerSelection === "paper") {
+       if(computerSelection === "rock") {
+        // document.getElementById(scoreboard).innerHTML = "Paper covers rock! You win!";
+         console.log(scoreboard);
+         playerWin++;
+         console.log(playerScore);
+         playerScore.textContent = playerWin;
+
+         return "Paper covers rock! You win!";
+
+       } else {
+         // document.getElementById(scoreboard).innerHTML = "Scissors cut paper! You lose!";
+         console.log(scoreboard);
+         cpWin++;
+         console.log(cpScore);
+         cpScore.textContent = cpWin;
+
+         return "Scissors cut paper! You lose!";
+
+       }
+     } else if(playerSelection === "scissors") {
+       if(computerSelection === "rock") {
+        // document.getElementById(scoreboard).innerHTML = "Rock breaks scissors! You lose!";
+         console.log(scoreboard);
+         cpWin++;
+         console.log(cpScore);
+         cpScore.textContent = cpWin;
+
+         return "Rock breaks scissors! You lose!";
+
+       } else {
+         // document.getElementById(scoreboard).innerHTML = "Scissors cut paper! You win!";
+         console.log(scoreboard);
+         playerWin++;
+         console.log(playerScore);
+         playerScore.textContent = playerWin;
+
+         return "Scissors cut paper! You win!";
+
+       }
+     }
+
+   };
+
+ }
+
+
+/*
+function game() {
+  let compScore = 0;
+  let playerScore = 0;
+  for (let counter = 1; playerScore < 5 && compScore < 5; counter++) {
+    let decider = playRound();
+    if (/draw/.test(decider)) {
+      console.log("Round # " + counter + " was a draw! No Change in score");
+     } else if (/win/.test(decider)) {
+       playerScore++;
+       console.log("Round # " + counter + " goes to the humans!");
+     } else if (/lose/.test(decider)) {
+       compScore++;
+       console.log("Round # " + counter + " stolen by the machine!");
+     }
+    console.log("The score is " + playerScore + " (player) to " + compScore + " (computer)" );
+   }
+   alert("Final Score: " + playerScore + " (player) to " + compScore + " (computer)");
+ };
+   game();
+*/
+  </script>
+ </body>
+</html>

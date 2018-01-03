@@ -1,0 +1,121 @@
+body {
+    background-color: #ffffff;
+}
+button {
+  border: none;
+  padding: 10px 17px;
+  border-radius: 1px;
+  background-color: #eaeaea;
+}
+h1 {
+    color: blue;
+}
+
+p {
+    color: red;
+}
+
+a {
+    font-size: 15px;
+    padding-left: 0px;
+    margin: 10px;
+    color: #686868;
+    text-decoration: none;
+
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.left {
+  float: left;
+  padding-left: 10px;
+}
+
+.right {
+  float: right;
+}
+
+.content {
+  position: absolute;
+  top: 23%;
+  left: 40%;
+
+
+}
+
+
+.search {
+  font-size:16px;
+  height:35pt;
+  width:435pt;
+  box-shadow: 1px 2px 2px 2px #ccc;
+  position: relative;
+  top: 5px;
+  left: -100px;
+  border-color: #ccc;
+  border-style: ridge;
+  border: 0;
+}
+
+.searchbutton {
+  position: relative;
+  top: 35px;
+  left: 35px;
+
+
+
+}
+.image {
+  position: relative;
+  top: -25px;
+  left: 60px;
+
+
+}
+
+.button {
+  margin-left: 10px;
+  color: #7c7c7c;
+  font-weight: 600;
+
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 0px;
+  width: 100%;
+  height: 40px;
+  background-color: #efefef;
+  color: white;
+  box-shadow: 0 2px 2px 2px #333;
+
+}
+
+.navimageL {
+  width: 30px;
+  height: 30px;
+}
+
+.navimageS {
+  width: 15px;
+  height: 15px;
+}
+
+#header-right {
+  height: 50px;
+  padding-top: 25px;
+}
+
+#header-left {
+  height: 50px;
+  padding-top: 25px;
+}
+
+#footer-right,
+#footer-left {
+  height: 50px;
+  padding-top: 10px;
+}
